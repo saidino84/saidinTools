@@ -1,5 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:saidino_admin/app/models/recent_files.dart';
+import 'package:saidino_admin/app/ui/dashboard/myFiles/componets/recent_files_widget.dart';
 import 'package:saidino_admin/shared.dart';
 
 import 'componets/profile_card.dart';
@@ -29,7 +31,15 @@ class DashbordScreen extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 5,
-                  child: MyFiles(),
+                  child: Column(
+                    children: [
+                      MyFiles(),
+                      SizedBox(
+                        height: defaultPadding,
+                      ),
+                      RecentFilesWidget()
+                    ],
+                  ),
                 ),
                 SizedBox(
                   width: defaultPadding,

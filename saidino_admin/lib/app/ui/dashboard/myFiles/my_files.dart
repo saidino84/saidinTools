@@ -1,4 +1,7 @@
+import 'package:saidino_admin/app/models/cloud_storage_info.dart';
 import 'package:saidino_admin/shared.dart';
+
+import 'componets/file_info_card.dart';
 
 class MyFiles extends StatelessWidget {
   const MyFiles({
@@ -32,20 +35,35 @@ class MyFiles extends StatelessWidget {
         SizedBox(
           height: defaultPadding,
         ),
-        GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                crossAxisSpacing: defaultPadding,
-                mainAxisSpacing: 10),
-            shrinkWrap: true,
-            itemCount: 10,
-            itemBuilder: (context, index) => Container(
-                  decoration: BoxDecoration(
-                    color: secondaryColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ))
+        FileInfoCardGridView()
       ],
+    );
+  }
+}
+
+class FileInfoCardGridView extends StatelessWidget {
+  final int crossAxisCount;
+  final int childAspectRatio;
+  FileInfoCardGridView({
+    Key? key,
+    this.childAspectRatio = 1,
+    this.crossAxisCount = 4,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: defaultPadding,
+          mainAxisSpacing: 10,
+          childAspectRatio: childAspectRatio.toDouble()),
+      shrinkWrap: true,
+      itemCount: demoFiles.length,
+      itemBuilder: (context, index) {
+        final info = demoFiles[index];
+        return FileInfoCard(info: info);
+      },
     );
   }
 }
