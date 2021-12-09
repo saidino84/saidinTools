@@ -1,4 +1,5 @@
 import 'package:flutter_svg/svg.dart';
+import 'package:saidino_admin/app/controllers/menu_controller.dart';
 import 'package:saidino_admin/app/ui/dashboard/dashbord_screen.dart';
 import 'package:saidino_admin/app/ui/drawer/app_drawer.dart';
 import 'package:saidino_admin/app/ui/responsive.dart';
@@ -16,7 +17,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
-      drawer: Responsivo.isMobile(context) ? AppDrawer() : null,
+      key: context.read<MenuController>().scaffoldKey,
+      drawer: AppDrawer(),
       // appBar: Responsivo.isMobile(context) ? AppBar() : null,
       //   title: Text('HOme'),
       // ),

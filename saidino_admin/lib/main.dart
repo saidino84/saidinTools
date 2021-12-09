@@ -1,4 +1,5 @@
 import 'package:google_fonts/google_fonts.dart';
+import 'package:saidino_admin/app/controllers/menu_controller.dart';
 import 'package:saidino_admin/app/ui/main_screen.dart';
 import 'package:saidino_admin/shared.dart';
 
@@ -19,7 +20,15 @@ class MyApp extends StatelessWidget {
         canvasColor: secondaryColor,
       ),
       debugShowCheckedModeBanner: false,
-      home: MainScreen(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => MenuController(),
+            builder: (context, child) => MainScreen(),
+            // child: MainScreen(),
+          )
+        ],
+      ),
     );
   }
 }
