@@ -28,7 +28,8 @@ class MyFiles extends StatelessWidget {
               style: TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(
                   horizontal: defaultPadding * 1.5,
-                  vertical: defaultPadding,
+                  vertical:
+                      defaultPadding / (Responsivo.isMobile(context) ? 2 : 1),
                 ),
               ),
             )

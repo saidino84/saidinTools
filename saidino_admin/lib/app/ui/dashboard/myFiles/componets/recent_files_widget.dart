@@ -24,16 +24,19 @@ class RecentFilesWidget extends StatelessWidget {
           ),
           SizedBox(
             width: double.infinity,
-            child: DataTable(
-                columnSpacing: defaultPadding,
-                horizontalMargin: 0,
-                columns: [
-                  DataColumn(label: Text('File Name')),
-                  DataColumn(label: Text('Date')),
-                  DataColumn(label: Text('Size')),
-                ],
-                rows: List.generate(demoResentFiles.length,
-                    (index) => recentFileDataRow(demoResentFiles[index]))),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                  columnSpacing: defaultPadding,
+                  horizontalMargin: 0,
+                  columns: [
+                    DataColumn(label: Text('File Name')),
+                    DataColumn(label: Text('Date')),
+                    DataColumn(label: Text('Size')),
+                  ],
+                  rows: List.generate(demoResentFiles.length,
+                      (index) => recentFileDataRow(demoResentFiles[index]))),
+            ),
           )
         ],
       ),
