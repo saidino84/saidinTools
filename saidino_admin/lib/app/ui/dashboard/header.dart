@@ -1,3 +1,4 @@
+import 'package:saidino_admin/app/ui/responsive.dart';
 import 'package:saidino_admin/shared.dart';
 
 import 'componets/profile_card.dart';
@@ -12,13 +13,22 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: defaultPadding),
-          child: Text('Dashbord'),
-        ),
-        Spacer(
-          flex: 2,
-        ),
+        if (!Responsivo.isDesktop(context))
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.menu_open,
+            ),
+          ),
+        if (!Responsivo.isMobile(context))
+          Padding(
+            padding: const EdgeInsets.only(left: defaultPadding),
+            child: Text('Dashbord'),
+          ),
+        if (!Responsivo.isMobile(context))
+          Spacer(
+            flex: Responsivo.isDesktop(context) ? 2 : 1,
+          ),
         Expanded(
           child: SearchField(),
         ),

@@ -16,6 +16,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
+      drawer: Responsivo.isMobile(context) ? AppDrawer() : null,
+      // appBar: Responsivo.isMobile(context) ? AppBar() : null,
       //   title: Text('HOme'),
       // ),
       body: SafeArea(

@@ -1,3 +1,4 @@
+import 'package:saidino_admin/app/ui/responsive.dart';
 import 'package:saidino_admin/shared.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -7,6 +8,8 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("${MediaQuery.of(context).size.width} SIZE WIDTH");
+    Size _size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(left: defaultPadding),
       padding: EdgeInsets.symmetric(
@@ -17,20 +20,28 @@ class ProfileCard extends StatelessWidget {
           border: Border.all(
             color: Colors.white10,
           )),
-      child: Row(
-        children: [
-          CircleAvatar(
-              backgroundImage: AssetImage('assets/images/saidino_profile.png')),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-            child: Text('Saidino Developer'),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.keyboard_arrow_down),
-          ),
-        ],
-      ),
+      child: _size.width < 600
+          ? GestureDetector(
+              child: CircleAvatar(
+                  backgroundImage:
+                      AssetImage('assets/images/saidino_profile.png')),
+            )
+          : Row(
+              children: [
+                CircleAvatar(
+                    backgroundImage:
+                        AssetImage('assets/images/saidino_profile.png')),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: defaultPadding / 2),
+                  child: Text('Saidino Developer'),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.keyboard_arrow_down),
+                ),
+              ],
+            ),
     );
   }
 }

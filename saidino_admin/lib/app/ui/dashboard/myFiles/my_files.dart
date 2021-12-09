@@ -1,4 +1,5 @@
 import 'package:saidino_admin/app/models/cloud_storage_info.dart';
+import 'package:saidino_admin/app/ui/responsive.dart';
 import 'package:saidino_admin/shared.dart';
 
 import 'componets/file_info_card.dart';
@@ -10,6 +11,7 @@ class MyFiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size _size = MediaQuery.of(context).size;
     return Column(
       children: [
         Row(
@@ -35,7 +37,16 @@ class MyFiles extends StatelessWidget {
         SizedBox(
           height: defaultPadding,
         ),
-        FileInfoCardGridView()
+        Responsivo(
+          mobile: FileInfoCardGridView(
+            crossAxisCount: _size.width < 650 ? 2 : 4,
+            childAspectRatio: _size.width < 650 ? 1.3 : 1,
+          ),
+          tablet: FileInfoCardGridView(),
+          desktop: FileInfoCardGridView(
+            childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
+          ),
+        ),
       ],
     );
   }
@@ -43,7 +54,7 @@ class MyFiles extends StatelessWidget {
 
 class FileInfoCardGridView extends StatelessWidget {
   final int crossAxisCount;
-  final int childAspectRatio;
+  final double childAspectRatio;
   FileInfoCardGridView({
     Key? key,
     this.childAspectRatio = 1,
@@ -53,10 +64,11 @@ class FileInfoCardGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount,
           crossAxisSpacing: defaultPadding,
-          mainAxisSpacing: 10,
+          mainAxisSpacing: defaultPadding,
           childAspectRatio: childAspectRatio.toDouble()),
       shrinkWrap: true,
       itemCount: demoFiles.length,

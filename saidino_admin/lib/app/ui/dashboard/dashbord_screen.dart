@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:saidino_admin/app/models/recent_files.dart';
 import 'package:saidino_admin/app/ui/dashboard/myFiles/componets/recent_files_widget.dart';
+import 'package:saidino_admin/app/ui/responsive.dart';
 import 'package:saidino_admin/shared.dart';
 
 import 'componets/profile_card.dart';
@@ -37,17 +38,32 @@ class DashbordScreen extends StatelessWidget {
                       SizedBox(
                         height: defaultPadding,
                       ),
-                      RecentFilesWidget()
+                      RecentFilesWidget(),
+
+                      //SE FOR NO TELEFONE ESSTES WIDGETS APARECERAM DE BAIXO
+                      if (Responsivo.isMobile(context))
+                        SizedBox(
+                          height: defaultPadding,
+                        ),
+
+                      //On Mobile measn if the screen is less than 850 of width
+                      //I dont want to show it (mandarei parabaixo
+                      if (Responsivo.isMobile(context)) StorageDetails(),
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: defaultPadding,
-                ),
-                Expanded(
-                  flex: 2,
-                  child: StorageDetails(),
-                ),
+                if (!Responsivo.isMobile(context))
+                  SizedBox(
+                    width: defaultPadding,
+                  ),
+
+                //On Mobile measn if the screen is less than 850 of width
+                //I dont want to show it (mandarei parabaixo
+                if (!Responsivo.isMobile(context))
+                  Expanded(
+                    flex: 2,
+                    child: StorageDetails(),
+                  ),
               ],
             )
           ],
