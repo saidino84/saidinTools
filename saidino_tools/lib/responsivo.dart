@@ -7,7 +7,7 @@ class ResponsiveLayout extends StatelessWidget {
 
   static int tableLimit = 1200;
   static int iphoneLimit = 640;
-  static int androidLimit = 850;
+  static int androidLimit = 640; //850;
   static int desktopLimit = 1200;
 
   static bool isAndroid(BuildContext context) =>
@@ -32,8 +32,8 @@ class ResponsiveLayout extends StatelessWidget {
       if (constraints.maxWidth < androidLimit) {
         return android;
       }
-      if (constraints.maxWidth < androidLimit) {
-        return android;
+      if (constraints.maxWidth < tableLimit) {
+        return tablet;
       } else {
         return desktop;
       }
